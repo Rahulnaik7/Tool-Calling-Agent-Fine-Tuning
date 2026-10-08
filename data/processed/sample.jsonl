@@ -1,0 +1,10 @@
+{"tool": "math_service", "arguments": {"operation": "add", "x": 1, "y": 2}}
+{"tool": "weather_api", "arguments": {"location": "London", "units": "metric"}}
+{"tool": "math_service", "arguments": {"operation": "mul", "x": 3, "y": 5}}
+{"tool": "time_service", "arguments": {"timezone": "UTC", "format": "%H:%M"}}
+{"tool": "weather_api", "arguments": {"location": "New York", "units": "imperial"}}
+{"tool": "search_api", "arguments": {"query": "best pizza near me", "top_k": 5}}
+{"tool": "math_service", "arguments": {"operation": "sub", "x": 10, "y": 4}}
+{"tool": "user_profile", "arguments": {"user_id": "u123", "fields": ["name","email"]}}
+{"tool": "translate_api", "arguments": {"text": "Hello", "target": "es"}}
+{"tool": "math_service", "arguments": {"operation": "div", "x": 20, "y": 4}}
