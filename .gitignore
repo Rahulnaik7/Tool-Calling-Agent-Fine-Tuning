@@ -3,6 +3,7 @@ env/
 d2l_env/
 __pycache__/
 .ipynb_checkpoints/
+.pytest_cache/
 *.pyc
 *.pyo
 *.pyd

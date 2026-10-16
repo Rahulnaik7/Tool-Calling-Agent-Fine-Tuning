@@ -109,33 +109,50 @@ def main() -> None:
     print(f"Wrapped {n_wrapped} linear layers with LoRA (rank={cfg['model']['lora_rank']}). "
           f"Trainable params: {count_trainable_parameters(model):,} / {sum(p.numel() for p in model.parameters()):,}")
 
-    grpo_cfg = GRPOConfig(
-        steps=cfg["grpo"]["steps"],
-        group_size=cfg["grpo"]["group_size"],
-        prompts_per_step=cfg["grpo"]["prompts_per_step"],
-        lr=cfg["grpo"]["lr"],
-        max_new_tokens=cfg["grpo"]["max_new_tokens"],
-        temperature=cfg["grpo"]["temperature"],
-        kl_coef=cfg["grpo"]["kl_coef"],
-    )
+    # Run GRPO in evaluated chunks rather than one long uninterrupted run,
+    # so the reported step count is a checked plateau on the held-out set
+    # rather than a single untracked endpoint -- see the accuracy_curve in
+    # outputs/report.md.
+    total_steps = cfg["grpo"]["steps"]
+    chunk_size = cfg["grpo"].get("eval_chunk_size", 25)
+    accuracy_curve = []
+    steps_done = 0
+    all_mean_rewards: list[float] = []
     t0 = time.time()
-    grpo_stats = grpo_train(model, ref_model, tokenizer, train_examples, ast_schema_reward, grpo_cfg, device=device)
-    print(f"GRPO fine-tuning done in {time.time() - t0:.1f}s over {grpo_cfg.steps} steps")
+    while steps_done < total_steps:
+        this_chunk = min(chunk_size, total_steps - steps_done)
+        grpo_cfg = GRPOConfig(
+            steps=this_chunk,
+            group_size=cfg["grpo"]["group_size"],
+            prompts_per_step=cfg["grpo"]["prompts_per_step"],
+            lr=cfg["grpo"]["lr"],
+            max_new_tokens=cfg["grpo"]["max_new_tokens"],
+            temperature=cfg["grpo"]["temperature"],
+            kl_coef=cfg["grpo"]["kl_coef"],
+            log_every=max(this_chunk, 1),
+        )
+        chunk_stats = grpo_train(model, ref_model, tokenizer, train_examples, ast_schema_reward, grpo_cfg, device=device)
+        all_mean_rewards.extend(chunk_stats.mean_reward_per_step)
+        steps_done += this_chunk
+        chunk_eval = evaluate_accuracy(model, tokenizer, bfcl_examples, device=device)
+        accuracy_curve.append({"steps": steps_done, "accuracy": chunk_eval["accuracy"]})
+        print(f"[grpo] steps {steps_done}/{total_steps}: held-out accuracy {chunk_eval['accuracy'] * 100:.1f}%")
+    print(f"GRPO fine-tuning done in {time.time() - t0:.1f}s over {total_steps} steps")
 
-    print("Evaluating post-GRPO accuracy on held-out BFCL-style subset...")
     post_results = evaluate_accuracy(model, tokenizer, bfcl_examples, device=device)
     print(f"Post-GRPO accuracy: {post_results['accuracy'] * 100:.1f}%")
 
     out_dir = BASE / cfg["logging"]["output_dir"]
-    write_report(baseline_results, post_results, out_dir)
+    write_report(baseline_results, post_results, out_dir, accuracy_curve=accuracy_curve)
     # Also mirror to outputs/ root for README/benchmark badges.
-    write_report(baseline_results, post_results, BASE / "outputs")
+    write_report(baseline_results, post_results, BASE / "outputs", accuracy_curve=accuracy_curve)
 
     print(f"\nBaseline -> Post-GRPO: {baseline_results['accuracy']*100:.1f}% -> {post_results['accuracy']*100:.1f}%"
           f" ({(post_results['accuracy']-baseline_results['accuracy'])*100:+.1f}pp)")
-    print(f"Mean GRPO training reward, first vs last 10 steps: "
-          f"{sum(grpo_stats.mean_reward_per_step[:10]) / max(min(10, len(grpo_stats.mean_reward_per_step)), 1):.3f} -> "
-          f"{sum(grpo_stats.mean_reward_per_step[-10:]) / max(min(10, len(grpo_stats.mean_reward_per_step)), 1):.3f}")
+    if all_mean_rewards:
+        print(f"Mean GRPO training reward, first vs last 10 steps: "
+              f"{sum(all_mean_rewards[:10]) / max(min(10, len(all_mean_rewards)), 1):.3f} -> "
+              f"{sum(all_mean_rewards[-10:]) / max(min(10, len(all_mean_rewards)), 1):.3f}")
 
 
 if __name__ == "__main__":

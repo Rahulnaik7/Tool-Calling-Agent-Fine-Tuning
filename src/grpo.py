@@ -61,6 +61,19 @@ class GRPOStats:
     loss_per_step: List[float] = field(default_factory=list)
 
 
+def group_relative_advantages(rewards: torch.Tensor) -> torch.Tensor:
+    """The core GRPO mechanic: normalize each completion's reward against
+    the mean/std of its own group (the other completions sampled for the
+    *same* prompt), instead of a learned critic's value estimate. A
+    zero-variance group (e.g. every completion scored identically) yields
+    all-zero advantages rather than a division-by-zero blow-up.
+    """
+    mean_r, std_r = rewards.mean(), rewards.std(unbiased=False)
+    if std_r.item() < 1e-6:
+        return torch.zeros_like(rewards)
+    return (rewards - mean_r) / (std_r + 1e-6)
+
+
 def _generated_length(seq_tail: List[int], eos_id: int) -> int:
     """How many tokens of the generated tail are "real" (up to and
     including the first eos, or all of them if eos never appears)."""
@@ -128,11 +141,7 @@ def grpo_train(
                 rewards.append(r)
 
             reward_t = torch.tensor(rewards, dtype=torch.float32, device=device)
-            mean_r, std_r = reward_t.mean(), reward_t.std(unbiased=False)
-            if std_r.item() < 1e-6:
-                advantages = torch.zeros_like(reward_t)
-            else:
-                advantages = (reward_t - mean_r) / (std_r + 1e-6)
+            advantages = group_relative_advantages(reward_t)
 
             step_rewards.extend(rewards)
 

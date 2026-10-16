@@ -66,13 +66,14 @@ def evaluate_accuracy(
     return {"accuracy": accuracy, "n": len(examples), "n_correct": correct, "per_example": per_example}
 
 
-def write_report(baseline: Dict, post_grpo: Dict, out_dir: Path) -> None:
+def write_report(baseline: Dict, post_grpo: Dict, out_dir: Path, accuracy_curve: List[Dict] | None = None) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     payload = {
         "baseline_accuracy": baseline["accuracy"],
         "post_grpo_accuracy": post_grpo["accuracy"],
         "delta_pp": round((post_grpo["accuracy"] - baseline["accuracy"]) * 100, 2),
         "n_eval_examples": baseline["n"],
+        "accuracy_curve": accuracy_curve or [],
         "baseline": baseline,
         "post_grpo": post_grpo,
     }
@@ -85,8 +86,13 @@ def write_report(baseline: Dict, post_grpo: Dict, out_dir: Path) -> None:
         f"- Baseline (post-SFT, pre-GRPO) accuracy: {baseline['accuracy'] * 100:.1f}%\n",
         f"- Post-GRPO accuracy: {post_grpo['accuracy'] * 100:.1f}%\n",
         f"- Delta: {payload['delta_pp']:+.1f}pp\n",
-        "\n## Sample predictions (post-GRPO)\n",
     ]
+    if accuracy_curve:
+        lines.append("\n## Held-out accuracy during GRPO training (checked every chunk, not just at the end)\n")
+        lines.append(f"- step 0 (baseline): {baseline['accuracy'] * 100:.1f}%\n")
+        for point in accuracy_curve:
+            lines.append(f"- step {point['steps']}: {point['accuracy'] * 100:.1f}%\n")
+    lines.append("\n## Sample predictions (post-GRPO)\n")
     for row in post_grpo["per_example"][:10]:
         mark = "correct" if row["correct"] else "incorrect"
         lines.append(f"- [{mark}] \"{row['instruction']}\" -> `{row['completion']}` (expected `{row['expected_tool']}`)\n")

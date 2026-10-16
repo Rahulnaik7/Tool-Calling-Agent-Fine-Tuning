@@ -233,28 +233,44 @@ def _fill_instruction(tool: str, template: str, args: Dict[str, Any]) -> str:
         return template
 
 
+def _value_matches_type(value: Any, ptype: type) -> bool:
+    if ptype is float:
+        return not isinstance(value, bool) and isinstance(value, (int, float))
+    if ptype is int:
+        return not isinstance(value, bool) and isinstance(value, int)
+    if ptype is str:
+        return isinstance(value, str)
+    if ptype is bool:
+        return isinstance(value, bool)
+    return False
+
+
 def verify_call(tool: str, args: Dict[str, Any]) -> bool:
-    """The dataset's "execution" check: does this call satisfy the tool's schema?"""
+    """The dataset's "execution" check: does this call satisfy the tool's
+    schema? Every provided argument (required *or* optional) is checked
+    against its declared type and, if it has one, its enum -- not just the
+    required ones, since an optional argument with a bad type or an
+    out-of-range enum value (e.g. `weather_api(..., units='lightyears')`)
+    is just as invalid a call as a missing required one.
+    """
     if tool not in TOOLS:
         return False
     spec = TOOLS[tool]
+    param_types = {**spec["required"], **spec["optional"]}
+
     for key, ptype in spec["required"].items():
         if key not in args:
             return False
-        value = args[key]
-        if ptype is float and isinstance(value, bool):
-            return False
-        if ptype is float and not isinstance(value, (int, float)):
-            return False
-        if ptype is int and not isinstance(value, int):
-            return False
-        if ptype is str and not isinstance(value, str):
-            return False
-        if ptype is bool and not isinstance(value, bool):
+
+    for key, value in args.items():
+        if key not in param_types:
+            return False  # unknown key, checked again below for clarity
+        if not _value_matches_type(value, param_types[key]):
             return False
         enum_vals = spec.get("enum", {}).get(key)
         if enum_vals and value not in enum_vals:
             return False
+
     allowed = all_keys(tool)
     if not set(args.keys()) <= allowed:
         return False

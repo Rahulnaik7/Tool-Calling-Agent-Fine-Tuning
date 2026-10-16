@@ -1,15 +1,1830 @@
 {
-  "tool_call_accuracy": 70.0,
-  "per_example": [
-    0.0,
-    1.0,
-    1.0,
-    1.0,
-    0.0,
-    1.0,
-    1.0,
-    1.0,
-    0.0,
-    1.0
-  ]
+  "baseline_accuracy": 0.28125,
+  "post_grpo_accuracy": 0.3359375,
+  "delta_pp": 5.47,
+  "n_eval_examples": 128,
+  "accuracy_curve": [
+    {
+      "steps": 25,
+      "accuracy": 0.3125
+    },
+    {
+      "steps": 50,
+      "accuracy": 0.3046875
+    },
+    {
+      "steps": 75,
+      "accuracy": 0.3203125
+    },
+    {
+      "steps": 100,
+      "accuracy": 0.328125
+    }
+  ],
+  "baseline": {
+    "accuracy": 0.28125,
+    "n": 128,
+    "n_correct": 36,
+    "per_example": [
+      {
+        "instruction": "Hey, Calculate the tip for a 100.84 bill at 90.22%.",
+        "expected_tool": "calculator_tip",
+        "completion": "calculator_tip (bill_total = 261.34, tip_percent = 261.06)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Schedule an event titled Budget laptops for 2026-05-22.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Budget laptops', date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, List my calendar events for 2026-05-22.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you execute the following python snippet: python tutorials.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'python', code = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you find Raj in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Raj')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you how much is 213.18 GBP in USD?",
+        "expected_tool": "currency_convert",
+        "completion": "currency_convert (amount = 120.95, from_currency = 'GBP', to_currency = 'USD')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "Hey, Look up rows in electric vehicle reviews matching python tutorials.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'python tutorials', filter = 'electric)",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Could you email Tom about Best pizza nearby.",
+        "expected_tool": "email_send",
+        "completion": "email_send (to = 'Tom', subject = 'Best pizza nearby')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Search for files named like weekend hiking trails.",
+        "expected_tool": "file_search",
+        "completion": "calendar_create_event (title = 'Best pizza nearby', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Find a flight from London to Mumbai for 2026-04-05.",
+        "expected_tool": "flight_search",
+        "completion": "flight_search (origin = 'London', date = '2026-04-05')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "I need you to search hotels in Cairo between 2026-01-15 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Cairo', check_in = '2026-01-15', check_out = '2026-01",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Hey, Create a picture of best pizza nearby.",
+        "expected_tool": "image_generate",
+        "completion": "image_generate (prompt = 'best pizza nearby')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Can you multiply 6.56 and 416.44 for me?",
+        "expected_tool": "math_service",
+        "completion": "flight_search (city = 'Berlin', check_in = '2026-01-15', check_out = '2026-01",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Could you put on weekend hiking trails for me.",
+        "expected_tool": "music_play",
+        "completion": "music_play (query = 'budget laptops', shuffle = False)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Could you search news articles on artificial intelligence.",
+        "expected_tool": "news_search",
+        "completion": "news_search (topic = 'climate policy', max_results = 8)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Make a note called Python tutorials: Electric vehicle reviews.",
+        "expected_tool": "note_create",
+        "completion": "note_create (title = 'Python tutorials', content = 'Python tutorials')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Hey, Where is my shipment TRK948585?",
+        "expected_tool": "package_track",
+        "completion": "package_track (tracking_number = 'TRK787569')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Search for dishes that use weekend hiking trails.",
+        "expected_tool": "recipe_search",
+        "completion": "hotel_search (text = 'Weekend hiking trails', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Set a reminder: Budget laptops on 2026-02-20.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Python tutorials', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Quick favor -- Search for places to eat in Tokyo.",
+        "expected_tool": "restaurant_search",
+        "completion": "hotel_search (city = 'Berlin', date = '2026-04-05')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Look up electric vehicle reviews online.",
+        "expected_tool": "search_api",
+        "completion": "hotel_search (city = 'electric vehicle reviews', when = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Get me a stock quote for GOOG.",
+        "expected_tool": "stock_quote",
+        "completion": "stock_quote (ticker = 'GOOG')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you tell me the current time in the python tutorials timezone.",
+        "expected_tool": "time_service",
+        "completion": "time_service (timezone = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, How do you say 'Budget laptops' in hi?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Budget laptops', target = 'budget laptops')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Could you what is 403.09 mi in kg?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 431.8, from_unit = 'c', to_unit = 'mi')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Get me user u121's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'u432')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Give me the current weather for {location} in {units}.",
+        "expected_tool": "weather_api",
+        "completion": "alarm_set (city = 'Mumbai')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you wake me up at 2026-01-15.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (time = '2026-01-15')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you calculate the tip for a 65.11 bill at 66.2%.",
+        "expected_tool": "calculator_tip",
+        "completion": "calculator_tip (bill_total = 364.99, tip_percent = 20)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Could you schedule an event titled Python tutorials for 2026-03-10.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Python tutorials', date = '2026-03-10')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to list my calendar events for 2026-04-05.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-04-05')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you execute the following bash snippet: python tutorials.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'bash', code = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Find Raj in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "alarm_set (time = 'Raj')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, How much is 291.89 INR in GBP?",
+        "expected_tool": "currency_convert",
+        "completion": "currency_convert (amount = 120.95, from_currency = 'GBP', to_currency = 'INR')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Hey, Look up rows in electric vehicle reviews matching budget laptops.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'electric vehicle reviews')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Could you switch the python tutorials on.",
+        "expected_tool": "device_control",
+        "completion": "music_play (query = 'python tutorials')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to email Fatima about Budget laptops.",
+        "expected_tool": "email_send",
+        "completion": "email_send (to = 'Fatima', subject = 'Budget laptops')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Search for files named like python tutorials.",
+        "expected_tool": "file_search",
+        "completion": "file_search (pattern = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Find a flight from Mumbai to Tokyo for 2026-03-10.",
+        "expected_tool": "flight_search",
+        "completion": "flight_search (origin = 'Berlin', destination = 'Mumbai', date = '2026-03-10')",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Could you search hotels in Tokyo between 2026-01-15 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Tokyo', check_in = '2026-01-15', check_out = '2026-01",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Hey, How do I get from {origin} to {destination} by {mode}?",
+        "expected_tool": "map_directions",
+        "completion": "map_directions (origin = 'London', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.45
+      },
+      {
+        "instruction": "Hey, Can you add 292.59 and 11.17 for me?",
+        "expected_tool": "math_service",
+        "completion": "math_service (operation = 'sub', x = 182.57, y = 442.25)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Search news articles on electric cars.",
+        "expected_tool": "news_search",
+        "completion": "alarm_set (time = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to make a note called Budget laptops: Python tutorials.",
+        "expected_tool": "note_create",
+        "completion": "note_create (title = 'Budget laptops', content = 'Cairo')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Could you where is my shipment TRK402801?",
+        "expected_tool": "package_track",
+        "completion": "music_play (query = 'weekend hiking trails')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Search for dishes that use weekend hiking trails.",
+        "expected_tool": "recipe_search",
+        "completion": "recipe_search (ingredient = 'weekend hiking trails')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Set a reminder: Best pizza nearby on 2026-04-05.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Best pizza nearby', when = '2026-04-05')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Look up electric vehicle reviews online.",
+        "expected_tool": "search_api",
+        "completion": "search_api (query = 'electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "How do you say 'Weekend hiking trails' in fr?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Weekend hiking trails', target = 'hi')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Quick favor -- What is 369.34 mi in mi?",
+        "expected_tool": "unit_convert",
+        "completion": "hotel_search (city = 'Berlin', check_in = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Get me user u637's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'u265')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Hey, Give me the current weather for {location} in {units}.",
+        "expected_tool": "weather_api",
+        "completion": "weather_api (location = 'Mumbai')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Calculate the tip for a 25.94 bill at 147.13%.",
+        "expected_tool": "calculator_tip",
+        "completion": "hotel_search (text = 'Best pizza nearby', when = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Schedule an event titled Electric vehicle reviews for 2026-02-20.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Best pizza nearby', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "I need you to list my calendar events for 2026-03-10.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-03-10')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Execute the following python snippet: electric vehicle reviews.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'python', code = 'electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you find Priya in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Priya')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to how much is 88.8 EUR in GBP?",
+        "expected_tool": "currency_convert",
+        "completion": "map_directions (amount = 'GBP', to_currency = 'EUR')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Look up rows in weekend hiking trails matching best pizza nearby.",
+        "expected_tool": "database_query",
+        "completion": "hotel_search (city = 'best pizza nearby', check_in = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Switch the electric vehicle reviews off.",
+        "expected_tool": "device_control",
+        "completion": "reminder_set (device = 'electric vehicle reviews', when = '2026-=')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Find a flight from Toronto to New York for 2026-01-15.",
+        "expected_tool": "flight_search",
+        "completion": "hotel_search (origin = 'Toronto', check_in = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to search hotels in Sydney between 2026-05-22 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Sydney', check_in = '2026-05-22', check_out = '2026-22",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Could you create a picture of python tutorials.",
+        "expected_tool": "image_generate",
+        "completion": "image_generate (prompt = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to can you subtract 212.26 and 331.84 for me?",
+        "expected_tool": "math_service",
+        "completion": "map_directions (origin = 'sub', content = 'sub')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Put on python tutorials for me.",
+        "expected_tool": "music_play",
+        "completion": "music_play (query = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Search news articles on the stock market.",
+        "expected_tool": "news_search",
+        "completion": "news_search (topic = 'the stock market')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Make a note called Weekend hiking trails: Best pizza nearby.",
+        "expected_tool": "note_create",
+        "completion": "calendar_create_event (title = 'Best pizza nearby', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Where is my shipment TRK181461?",
+        "expected_tool": "package_track",
+        "completion": "flight_search (origin = 'Mumbai', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to set a reminder: Python tutorials on 2026-03-10.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Python tutorials', date = '2026-03-10')",
+        "correct": false,
+        "reward": 0.7
+      },
+      {
+        "instruction": "I need you to search for places to eat in Berlin.",
+        "expected_tool": "restaurant_search",
+        "completion": "map_directions (location = 'Berlin', cuisine = 'Mumbai')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to look up python tutorials online.",
+        "expected_tool": "search_api",
+        "completion": "time_service (query = 'python tutorials')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Get me a stock quote for TSLA.",
+        "expected_tool": "stock_quote",
+        "completion": "stock_quote (ticker = 'GOOG')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "How do you say 'Best pizza nearby' in fr?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Best pizza nearby', target = 'hi')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Hey, What is 365.97 f in kg?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 431.8, from_unit = 'f', to_unit = 'f')",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Quick favor -- Get me user u214's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "alarm_set (time = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you give me the current weather for London in imperial.",
+        "expected_tool": "weather_api",
+        "completion": "weather_api (location = 'Mumbai')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "I need you to wake me up at 2026-01-15.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (timezone = 'Best pizza nearby', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.4
+      },
+      {
+        "instruction": "I need you to calculate the tip for a 480.31 bill at 302.26%.",
+        "expected_tool": "calculator_tip",
+        "completion": "time_service (bill_total = 396.94, tip_percent = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you schedule an event titled Budget laptops for 2026-05-22.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Budget laptops', date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- List my calendar events for 2026-05-22.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to execute the following bash snippet: best pizza nearby.",
+        "expected_tool": "code_execute",
+        "completion": "map_directions (language = 'bash', code = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Find Wei in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Yuki')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "I need you to how much is 433.89 INR in GBP?",
+        "expected_tool": "currency_convert",
+        "completion": "map_directions (origin = 'New York')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Look up rows in python tutorials matching electric vehicle reviews.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'python tutorials', filter = 'python tutorials')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "I need you to switch the budget laptops on.",
+        "expected_tool": "device_control",
+        "completion": "time_service (origin = 'budget laptops', date = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Email Wei about Python tutorials.",
+        "expected_tool": "email_send",
+        "completion": "hotel_search (text = 'Python tutorials', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Find a flight from Toronto to New York for 2026-03-10.",
+        "expected_tool": "flight_search",
+        "completion": "flight_search (origin = 'Toronto', destination = 'Toronto', date = '2026-03-10')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "I need you to search hotels in Cairo between 2026-03-10 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Cairo', check_in = '2026-03-10')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "Hey, Create a picture of budget laptops.",
+        "expected_tool": "image_generate",
+        "completion": "image_generate (prompt = 'budget laptops')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you how do I get from Mumbai to London by bicycling?",
+        "expected_tool": "map_directions",
+        "completion": "map_directions (origin = 'Mumbai', destination = 'Berlin')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Hey, Can you subtract 78.68 and 320.52 for me?",
+        "expected_tool": "math_service",
+        "completion": "math_service (operation = 'sub', x = 182.57, y = 442.25)",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Quick favor -- Put on budget laptops for me.",
+        "expected_tool": "music_play",
+        "completion": "calendar_create_event (title = 'Budget laptops', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you search news articles on the stock market.",
+        "expected_tool": "news_search",
+        "completion": "news_search (topic = 'the stock market')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Make a note called Python tutorials: Best pizza nearby.",
+        "expected_tool": "note_create",
+        "completion": "calendar_create_event (title = 'Python tutorials', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Where is my shipment TRK809521?",
+        "expected_tool": "package_track",
+        "completion": "flight_search (tracking_number = 'London')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you search for dishes that use weekend hiking trails.",
+        "expected_tool": "recipe_search",
+        "completion": "recipe_search (ingredient = 'weekend hiking trails')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Set a reminder: Budget laptops on 2026-02-20.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Budget laptops', when = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Search for places to eat in London.",
+        "expected_tool": "restaurant_search",
+        "completion": "restaurant_search (location = 'London')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Look up weekend hiking trails online.",
+        "expected_tool": "search_api",
+        "completion": "hotel_search (city = 'Tom', when = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you get me a stock quote for TSLA.",
+        "expected_tool": "stock_quote",
+        "completion": "stock_quote (ticker = 'Berlin', ticker = 'cartoon')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Tell me the current time in the python tutorials timezone.",
+        "expected_tool": "time_service",
+        "completion": "alarm_set (time = '2026-03-10')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you what is 234.08 c in km?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 338.33, from_unit = 'km', to_unit = 'mi')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Get me user u320's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'u959')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Hey, Wake me up at 2026-04-05.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (time = '2026-04-05')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Calculate the tip for a 43.99 bill at 235.89%.",
+        "expected_tool": "calculator_tip",
+        "completion": "calculator_tip (bill_total = 261.34, tip_percent = 434.13)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Could you schedule an event titled Python tutorials for 2026-05-22.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Python tutorials', date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to list my calendar events for 2026-02-20.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you execute the following python snippet: weekend hiking trails.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'python tutorials', limit = 'weekend hiking trails')",
+        "correct": false,
+        "reward": 0.45
+      },
+      {
+        "instruction": "I need you to find Carlos in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Carlos', body = 'Electric vehicle reviews')",
+        "correct": false,
+        "reward": 0.95
+      },
+      {
+        "instruction": "How much is 482.52 INR in EUR?",
+        "expected_tool": "currency_convert",
+        "completion": "currency_convert (amount = 120.95, from_currency = 'INR', to_currency = 'EUR')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "Hey, Look up rows in electric vehicle reviews matching best pizza nearby.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'best pizza nearby', filter = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Hey, Switch the best pizza nearby on.",
+        "expected_tool": "device_control",
+        "completion": "device_control (device = 'best pizza nearby', state = 'on')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Email Carlos about Best pizza nearby.",
+        "expected_tool": "email_send",
+        "completion": "hotel_search (city = 'Carlos', check_in = 'Best pizza nearby', date = '2026-01-15",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Quick favor -- Find a flight from London to Tokyo for 2026-04-05.",
+        "expected_tool": "flight_search",
+        "completion": "hotel_search (origin = 'London', date = '2026-04-05')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Search hotels in Sydney between 2026-02-20 and 2026-03-10.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Sydney', check_in = '2026-02-20', check_out = '2026-03",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Quick favor -- How do I get from {origin} to {destination} by {mode}?",
+        "expected_tool": "map_directions",
+        "completion": "hotel_search (origin = 'Berlin', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you can you multiply 393.83 and 240.57 for me?",
+        "expected_tool": "math_service",
+        "completion": "math_service (operation = 'mul', x = 116.16, y = 20)",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Quick favor -- Put on best pizza nearby for me.",
+        "expected_tool": "music_play",
+        "completion": "alarm_set (time = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Make a note called Electric vehicle reviews: Electric vehicle reviews.",
+        "expected_tool": "note_create",
+        "completion": "calendar_create_event (title = 'Electric vehicle reviews', date = '2026-=' 2026-03-10 ')",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "I need you to where is my shipment TRK975748?",
+        "expected_tool": "package_track",
+        "completion": "map_directions (origin = 'New York', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to set a reminder: Best pizza nearby on 2026-02-20.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Best pizza nearby', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.7
+      },
+      {
+        "instruction": "Quick favor -- Search for places to eat in London.",
+        "expected_tool": "restaurant_search",
+        "completion": "hotel_search (city = 'Berlin', check_in = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Look up python tutorials online.",
+        "expected_tool": "search_api",
+        "completion": "search_api (query = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to tell me the current time in the electric vehicle reviews timezone.",
+        "expected_tool": "time_service",
+        "completion": "time_service (timezone = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "How do you say 'Electric vehicle reviews' in ja?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Electric vehicle reviews', target = 'de')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Could you what is 296.25 mi in kg?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = hotel_search (value = 127.18, from_unit = 201.23, from_unit = '2026-01-15',",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "I need you to get me user u538's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'Berlin')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Wake me up at 2026-02-20.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (time = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      }
+    ]
+  },
+  "post_grpo": {
+    "accuracy": 0.3359375,
+    "n": 128,
+    "n_correct": 43,
+    "per_example": [
+      {
+        "instruction": "Hey, Calculate the tip for a 100.84 bill at 90.22%.",
+        "expected_tool": "calculator_tip",
+        "completion": "calculator_tip (bill_total = 244.95, tip_percent = 83.83)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Schedule an event titled Budget laptops for 2026-05-22.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Budget laptops', date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, List my calendar events for 2026-05-22.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you execute the following python snippet: python tutorials.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'python', code = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you find Raj in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Raj')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you how much is 213.18 GBP in USD?",
+        "expected_tool": "currency_convert",
+        "completion": "currency_convert (amount = 120.95, from_currency = 'GBP', to_currency = 'USD')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "Hey, Look up rows in electric vehicle reviews matching python tutorials.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'python tutorials', filter = 'electric)",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Could you email Tom about Best pizza nearby.",
+        "expected_tool": "email_send",
+        "completion": "email_send (to = 'Tom', subject = 'Best pizza nearby')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Search for files named like weekend hiking trails.",
+        "expected_tool": "file_search",
+        "completion": "hotel_search (title = 'Best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Find a flight from London to Mumbai for 2026-04-05.",
+        "expected_tool": "flight_search",
+        "completion": "flight_search (origin = 'London', destination = '2026-04-05')",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "I need you to search hotels in Cairo between 2026-01-15 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Cairo', check_in = '2026-01-15', check_out = '2026-01",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Hey, Create a picture of best pizza nearby.",
+        "expected_tool": "image_generate",
+        "completion": "image_generate (prompt = 'best pizza nearby')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Can you multiply 6.56 and 416.44 for me?",
+        "expected_tool": "math_service",
+        "completion": "flight_search (origin = 'Mumbai', check_in = '2026-04-05', check_out = 'best pizza nearby",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Could you put on weekend hiking trails for me.",
+        "expected_tool": "music_play",
+        "completion": "music_play (query = 'weekend hiking trails')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you search news articles on artificial intelligence.",
+        "expected_tool": "news_search",
+        "completion": "news_search (topic = 'climate policy', max_results = 8)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Make a note called Python tutorials: Electric vehicle reviews.",
+        "expected_tool": "note_create",
+        "completion": "note_create (title = 'Python tutorials', content = 'Electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Where is my shipment TRK948585?",
+        "expected_tool": "package_track",
+        "completion": "package_track (tracking_number = 'TRK787569')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Search for dishes that use weekend hiking trails.",
+        "expected_tool": "recipe_search",
+        "completion": "reminder_set (text = 'weekend hiking trails')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Set a reminder: Budget laptops on 2026-02-20.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Python tutorials', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Quick favor -- Search for places to eat in Tokyo.",
+        "expected_tool": "restaurant_search",
+        "completion": "hotel_search (city = 'Mumbai', when = '2026-04-05')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Look up electric vehicle reviews online.",
+        "expected_tool": "search_api",
+        "completion": "alarm_set (text = 'electric vehicle reviews', when = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Get me a stock quote for GOOG.",
+        "expected_tool": "stock_quote",
+        "completion": "stock_quote (ticker = 'GOOG')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you tell me the current time in the python tutorials timezone.",
+        "expected_tool": "time_service",
+        "completion": "time_service (timezone = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, How do you say 'Budget laptops' in hi?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Budget laptops', target = 'hi')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you what is 403.09 mi in kg?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 383.56, from_unit = 'lb', to_unit = 'f')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Get me user u121's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'u318')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Give me the current weather for {location} in {units}.",
+        "expected_tool": "weather_api",
+        "completion": "alarm_set (location = 'Mumbai')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you wake me up at 2026-01-15.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (time = '2026-01-15')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you calculate the tip for a 65.11 bill at 66.2%.",
+        "expected_tool": "calculator_tip",
+        "completion": "calculator_tip (bill_total = 244.95, tip_percent = 83.83)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Could you schedule an event titled Python tutorials for 2026-03-10.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Python tutorials', date = '2026-03-10')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to list my calendar events for 2026-04-05.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-04-05')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you execute the following bash snippet: python tutorials.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'bash', code = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Find Raj in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "alarm_set (name = 'Raj')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, How much is 291.89 INR in GBP?",
+        "expected_tool": "currency_convert",
+        "completion": "currency_convert (amount = 120.95, from_currency = 'GBP', to_currency = 'INR')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Hey, Look up rows in electric vehicle reviews matching budget laptops.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'electric vehicle reviews')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Could you switch the python tutorials on.",
+        "expected_tool": "device_control",
+        "completion": "device_control (query = 'python tutorials')",
+        "correct": false,
+        "reward": 0.45
+      },
+      {
+        "instruction": "I need you to email Fatima about Budget laptops.",
+        "expected_tool": "email_send",
+        "completion": "email_send (to = 'Fatima', subject = 'Budget laptops')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Search for files named like python tutorials.",
+        "expected_tool": "file_search",
+        "completion": "file_search (pattern = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Find a flight from Mumbai to Tokyo for 2026-03-10.",
+        "expected_tool": "flight_search",
+        "completion": "flight_search (origin = 'Berlin', destination = 'Mumbai', date = '2026-03-10')",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Could you search hotels in Tokyo between 2026-01-15 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Tokyo', check_in = '2026-01-15', check_out = '2026-01",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Hey, How do I get from {origin} to {destination} by {mode}?",
+        "expected_tool": "map_directions",
+        "completion": "map_directions (origin = 'London', date = '2026-05-22')",
+        "correct": false,
+        "reward": 0.45
+      },
+      {
+        "instruction": "Hey, Can you add 292.59 and 11.17 for me?",
+        "expected_tool": "math_service",
+        "completion": "math_service (operation = 'sub', x = 255.55, y = 442.25)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Search news articles on electric cars.",
+        "expected_tool": "news_search",
+        "completion": "alarm_set (text = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to make a note called Budget laptops: Python tutorials.",
+        "expected_tool": "note_create",
+        "completion": "note_create (title = 'Best pizza nearby', content = 'Budget laptops')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Could you where is my shipment TRK402801?",
+        "expected_tool": "package_track",
+        "completion": "package_track (query = 'weekend hiking trails')",
+        "correct": false,
+        "reward": 0.45
+      },
+      {
+        "instruction": "Hey, Search for dishes that use weekend hiking trails.",
+        "expected_tool": "recipe_search",
+        "completion": "recipe_search (ingredient = 'weekend hiking trails')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Set a reminder: Best pizza nearby on 2026-04-05.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Best pizza nearby', when = '2026-04-05')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Look up electric vehicle reviews online.",
+        "expected_tool": "search_api",
+        "completion": "search_api (query = 'electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "How do you say 'Weekend hiking trails' in fr?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Weekend hiking trails', target = 'hi')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Quick favor -- What is 369.34 mi in mi?",
+        "expected_tool": "unit_convert",
+        "completion": "hotel_search (city = 'Berlin', check_in = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Get me user u637's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'u265')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Hey, Give me the current weather for {location} in {units}.",
+        "expected_tool": "weather_api",
+        "completion": "weather_api (location = 'Mumbai')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Calculate the tip for a 25.94 bill at 147.13%.",
+        "expected_tool": "calculator_tip",
+        "completion": "reminder_set (text = 'Best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Schedule an event titled Electric vehicle reviews for 2026-02-20.",
+        "expected_tool": "calendar_create_event",
+        "completion": "hotel_search (title = 'Best pizza nearby', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to list my calendar events for 2026-03-10.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-03-10')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Execute the following python snippet: electric vehicle reviews.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'python', code = 'electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you find Priya in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Priya')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to how much is 88.8 EUR in GBP?",
+        "expected_tool": "currency_convert",
+        "completion": "map_directions (amount = 'GBP', to_currency = 'EUR')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Look up rows in weekend hiking trails matching best pizza nearby.",
+        "expected_tool": "database_query",
+        "completion": "reminder_set (text = 'best pizza nearby', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Switch the electric vehicle reviews off.",
+        "expected_tool": "device_control",
+        "completion": "reminder_set (device = 'electric vehicle reviews', state = 'on')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Find a flight from Toronto to New York for 2026-01-15.",
+        "expected_tool": "flight_search",
+        "completion": "hotel_search (origin = 'Toronto', check_in = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to search hotels in Sydney between 2026-05-22 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Sydney', check_in = '2026-05-22', check_out = '2026-22",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Could you create a picture of python tutorials.",
+        "expected_tool": "image_generate",
+        "completion": "image_generate (prompt = 'python tutorials', style = 'sketch)",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "I need you to can you subtract 212.26 and 331.84 for me?",
+        "expected_tool": "math_service",
+        "completion": "map_directions (origin = 'Sydney', y = 'sub', date = 13)",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Put on python tutorials for me.",
+        "expected_tool": "music_play",
+        "completion": "music_play (query = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Search news articles on the stock market.",
+        "expected_tool": "news_search",
+        "completion": "news_search (topic = 'the stock market')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Make a note called Weekend hiking trails: Best pizza nearby.",
+        "expected_tool": "note_create",
+        "completion": "calendar_create_event (title = 'Best pizza nearby', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Where is my shipment TRK181461?",
+        "expected_tool": "package_track",
+        "completion": "flight_search (origin = 'Mumbai', date = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to set a reminder: Python tutorials on 2026-03-10.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Python tutorials', when = '2026-03-10')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to search for places to eat in Berlin.",
+        "expected_tool": "restaurant_search",
+        "completion": "restaurant_search (location = 'Berlin', cuisine = 'electric)",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "I need you to look up python tutorials online.",
+        "expected_tool": "search_api",
+        "completion": "time_service (query = 'python tutorials')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Hey, Get me a stock quote for TSLA.",
+        "expected_tool": "stock_quote",
+        "completion": "stock_quote (ticker = 'GOOG')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "How do you say 'Best pizza nearby' in fr?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Best pizza nearby', target = 'hi')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Hey, What is 365.97 f in kg?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 431.8, from_unit = 'f', to_unit = 'f')",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Quick favor -- Get me user u214's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "alarm_set (time = '2026-04-05')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you give me the current weather for London in imperial.",
+        "expected_tool": "weather_api",
+        "completion": "weather_api (location = 'Mumbai')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "I need you to wake me up at 2026-01-15.",
+        "expected_tool": "alarm_set",
+        "completion": "time_service (timezone = 'Best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to calculate the tip for a 480.31 bill at 302.26%.",
+        "expected_tool": "calculator_tip",
+        "completion": "time_service (timezone = 'lb')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you schedule an event titled Budget laptops for 2026-05-22.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Budget laptops', date = '2026-05-22', duration_minutes = 22 ')",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Quick favor -- List my calendar events for 2026-05-22.",
+        "expected_tool": "calendar_list_events",
+        "completion": "alarm_set (date = '2026-05-22')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to execute the following bash snippet: best pizza nearby.",
+        "expected_tool": "code_execute",
+        "completion": "map_directions (language = 'bash', code = 'best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Find Wei in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Wei')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to how much is 433.89 INR in GBP?",
+        "expected_tool": "currency_convert",
+        "completion": "map_directions (origin = 'New York')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Look up rows in python tutorials matching electric vehicle reviews.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'python tutorials', filter = 'electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to switch the budget laptops on.",
+        "expected_tool": "device_control",
+        "completion": "device_control (device = 'budget laptops', state = 'on')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Email Wei about Python tutorials.",
+        "expected_tool": "email_send",
+        "completion": "reminder_set (text = 'Python tutorials', when = 'Best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Find a flight from Toronto to New York for 2026-03-10.",
+        "expected_tool": "flight_search",
+        "completion": "flight_search (origin = 'Toronto', destination = 'London', date = '2026-03-10')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "I need you to search hotels in Cairo between 2026-03-10 and 2026-02-20.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Cairo', check_in = '2026-03-10')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "Hey, Create a picture of budget laptops.",
+        "expected_tool": "image_generate",
+        "completion": "image_generate (prompt = 'budget laptops')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you how do I get from Mumbai to London by bicycling?",
+        "expected_tool": "map_directions",
+        "completion": "map_directions (origin = 'Mumbai', destination = 'Berlin')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Hey, Can you subtract 78.68 and 320.52 for me?",
+        "expected_tool": "math_service",
+        "completion": "math_service (operation = 'sub', x = 255.55, y = 442.25)",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Quick favor -- Put on budget laptops for me.",
+        "expected_tool": "music_play",
+        "completion": "reminder_set (text = 'Budget laptops', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you search news articles on the stock market.",
+        "expected_tool": "news_search",
+        "completion": "news_search (topic = 'the stock market')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Make a note called Python tutorials: Best pizza nearby.",
+        "expected_tool": "note_create",
+        "completion": "flight_search (title = 'Python tutorials', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Where is my shipment TRK809521?",
+        "expected_tool": "package_track",
+        "completion": "flight_search (tracking_number = 'TRK787569')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you search for dishes that use weekend hiking trails.",
+        "expected_tool": "recipe_search",
+        "completion": "recipe_search (ingredient = 'weekend hiking trails')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Set a reminder: Budget laptops on 2026-02-20.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Budget laptops', when = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Search for places to eat in London.",
+        "expected_tool": "restaurant_search",
+        "completion": "restaurant_search (location = 'London')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Look up weekend hiking trails online.",
+        "expected_tool": "search_api",
+        "completion": "reminder_set (text = 'Weekend hiking trails', when = '2026-03-10')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you get me a stock quote for TSLA.",
+        "expected_tool": "stock_quote",
+        "completion": "stock_quote (ticker = 'TSLA', x = 179.06)",
+        "correct": false,
+        "reward": 0.95
+      },
+      {
+        "instruction": "Quick favor -- Tell me the current time in the python tutorials timezone.",
+        "expected_tool": "time_service",
+        "completion": "alarm_set (time = '2026-03-10')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you what is 234.08 c in km?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 127.18, from_unit = 'km', to_unit = 'mi')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Get me user u320's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'u959')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Hey, Wake me up at 2026-04-05.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (time = '2026-04-05')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Calculate the tip for a 43.99 bill at 235.89%.",
+        "expected_tool": "calculator_tip",
+        "completion": "calculator_tip (bill_total = 244.95, tip_percent = 217.69)",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Could you schedule an event titled Python tutorials for 2026-05-22.",
+        "expected_tool": "calendar_create_event",
+        "completion": "calendar_create_event (title = 'Python tutorials', date = '2026-05-22')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to list my calendar events for 2026-02-20.",
+        "expected_tool": "calendar_list_events",
+        "completion": "calendar_list_events (date = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Could you execute the following python snippet: weekend hiking trails.",
+        "expected_tool": "code_execute",
+        "completion": "code_execute (language = 'python tutorials', filter = 'weekend hiking trails')",
+        "correct": false,
+        "reward": 0.45
+      },
+      {
+        "instruction": "I need you to find Carlos in my contacts.",
+        "expected_tool": "contact_lookup",
+        "completion": "contact_lookup (name = 'Carlos', shuffle = True)",
+        "correct": false,
+        "reward": 0.95
+      },
+      {
+        "instruction": "How much is 482.52 INR in EUR?",
+        "expected_tool": "currency_convert",
+        "completion": "currency_convert (amount = 120.95, from_currency = 'INR', to_currency = 'EUR')",
+        "correct": false,
+        "reward": 0.8333
+      },
+      {
+        "instruction": "Hey, Look up rows in electric vehicle reviews matching best pizza nearby.",
+        "expected_tool": "database_query",
+        "completion": "database_query (table = 'electric vehicle reviews', filter = 'best pizza nearby')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Hey, Switch the best pizza nearby on.",
+        "expected_tool": "device_control",
+        "completion": "device_control (device = 'best pizza nearby', state = 'on')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Email Carlos about Best pizza nearby.",
+        "expected_tool": "email_send",
+        "completion": "flight_search (to = 'Carlos', check_in = 'Best pizza nearby')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Find a flight from London to Tokyo for 2026-04-05.",
+        "expected_tool": "flight_search",
+        "completion": "hotel_search (origin = 'London', check_in = '2026-04-05')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Search hotels in Sydney between 2026-02-20 and 2026-03-10.",
+        "expected_tool": "hotel_search",
+        "completion": "hotel_search (city = 'Sydney', check_in = '2026-02-20', check_out = '2026-03",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Quick favor -- How do I get from {origin} to {destination} by {mode}?",
+        "expected_tool": "map_directions",
+        "completion": "flight_search (origin = 'Berlin', date = '2026-01-15')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Could you can you multiply 393.83 and 240.57 for me?",
+        "expected_tool": "math_service",
+        "completion": "math_service (operation = 'mul', x = 116.16, y = 443.26)",
+        "correct": false,
+        "reward": 0.6667
+      },
+      {
+        "instruction": "Quick favor -- Put on best pizza nearby for me.",
+        "expected_tool": "music_play",
+        "completion": "alarm_set (text = 'Best pizza nearby', when = '2026-02-20')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "Quick favor -- Make a note called Electric vehicle reviews: Electric vehicle reviews.",
+        "expected_tool": "note_create",
+        "completion": "flight_search (title = 'Electric vehicle reviews', date = 'Electric vehicle reviews')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to where is my shipment TRK975748?",
+        "expected_tool": "package_track",
+        "completion": "map_directions (origin = 'sub', carrier = 'weekend hiking trails')",
+        "correct": false,
+        "reward": 0.2
+      },
+      {
+        "instruction": "I need you to set a reminder: Best pizza nearby on 2026-02-20.",
+        "expected_tool": "reminder_set",
+        "completion": "reminder_set (text = 'Best pizza nearby', when = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "Quick favor -- Search for places to eat in London.",
+        "expected_tool": "restaurant_search",
+        "completion": "hotel_search (city = 'Mumbai', check_in = '2026-04-05', check_out = '2026-05",
+        "correct": false,
+        "reward": 0.0
+      },
+      {
+        "instruction": "Hey, Look up python tutorials online.",
+        "expected_tool": "search_api",
+        "completion": "search_api (query = 'python tutorials')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "I need you to tell me the current time in the electric vehicle reviews timezone.",
+        "expected_tool": "time_service",
+        "completion": "time_service (timezone = 'electric vehicle reviews')",
+        "correct": true,
+        "reward": 1.0
+      },
+      {
+        "instruction": "How do you say 'Electric vehicle reviews' in ja?",
+        "expected_tool": "translate_api",
+        "completion": "translate_api (text = 'Electric vehicle reviews', target = 'de')",
+        "correct": false,
+        "reward": 0.75
+      },
+      {
+        "instruction": "Could you what is 296.25 mi in kg?",
+        "expected_tool": "unit_convert",
+        "completion": "unit_convert (value = 359.96, from_unit = 'kg')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "I need you to get me user u538's profile details.",
+        "expected_tool": "user_profile",
+        "completion": "user_profile (user_id = 'TSLA')",
+        "correct": false,
+        "reward": 0.5
+      },
+      {
+        "instruction": "Quick favor -- Wake me up at 2026-02-20.",
+        "expected_tool": "alarm_set",
+        "completion": "alarm_set (time = '2026-02-20')",
+        "correct": true,
+        "reward": 1.0
+      }
+    ]
+  }
 }

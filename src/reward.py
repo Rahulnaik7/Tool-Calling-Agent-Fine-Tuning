@@ -136,6 +136,6 @@ def evaluate_batch(predictions: List[str], targets: List[Dict[str, Any]]) -> Lis
     return scores
 
 
-# Backward-compatible name used by the old demo scaffold.
+# Alias kept for the original scaffold's naming.
 def schema_reward(prediction: str, expected_tool: str, expected_args: Dict[str, Any]) -> float:
     return ast_schema_reward(prediction, expected_tool, expected_args)
