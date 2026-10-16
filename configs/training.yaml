@@ -1,20 +1,44 @@
-model:
-  name: "Qwen/Qwen2.5-7B"
-  use_lora: true
-  lora_rank: 16
-  lora_alpha: 32
+seed: 7
 
-training:
-  batch_size: 4
-  gradient_accumulation_steps: 8
-  learning_rate: 1.0e-5
-  epochs: 3
-  max_seq_length: 2048
+model:
+  # A from-scratch decoder-only transformer, not Qwen2.5-7B -- see
+  # src/model.py's module docstring for why (no GPU, no network path to
+  # the Hugging Face Hub in this sandbox). Sized to train end-to-end on
+  # 2 CPU cores in a few minutes.
+  d_model: 128
+  n_layer: 4
+  n_head: 4
+  d_ff: 512
+  max_seq_len: 160
+  dropout: 0.1
+  lora_rank: 8
+  lora_alpha: 16
+
+sft:
+  # Phase 1: supervised warm-start (behavior cloning) over the 500
+  # execution-verified trajectories, establishing baseline competence
+  # before GRPO -- see src/sft.py.
+  epochs: 6
+  batch_size: 16
+  lr: 3.0e-4
+
+grpo:
+  # Phase 2: LoRA + GRPO fine-tune on top of the SFT checkpoint -- see
+  # src/grpo.py. Only LoRA adapter parameters are trainable here.
+  steps: 150
+  group_size: 6
+  prompts_per_step: 4
+  lr: 5.0e-3
+  max_new_tokens: 24
+  temperature: 1.0
+  kl_coef: 0.02
 
 reward:
-  schema_validation: true
-  ast_check: true
-  tool_call_match: true
+  # Reward components used by src/reward.py::ast_schema_reward -- see
+  # that module for the exact weights and rationale.
+  ast_valid: true
+  api_match: true
+  schema_match: true
 
 logging:
   output_dir: "outputs/run_001"
